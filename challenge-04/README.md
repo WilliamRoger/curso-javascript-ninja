@@ -110,7 +110,7 @@ Crie um método chamado `obterMarca` que retorne a marca do carro.
 
 carro.obterMarca = function () {
   return carro.marca;
-}
+};
 
 /*
 Crie um método chamado `obterMarcaModelo`, que retorne:
@@ -120,7 +120,7 @@ Para retornar os valores de marca e modelo, utilize os métodos criados.
 
 carro.obterMarcaModelo = function () {
   return 'Esse carro é um ' + carro.obterMarca() + ' ' + carro.obterModelo();
-}
+};
 
 /*
 Crie um método que irá adicionar pessoas no carro. Esse método terá as
@@ -138,22 +138,25 @@ mostrar quantos assentos ainda podem ser ocupados, com a frase:
 - Se couber somente mais uma pessoa, mostrar a palavra "pessoa" no retorno
 citado acima, no lugar de "pessoas".
 */
-carro.adicionarPessoas = function(pessoas) {
-  var vagasRestantes = carro.assentos - carro.quantidadePessoas;
-  var pessoa = (vagasRestantes === 1) ? 'pessoa' : 'pessoas';
 
-  if (carro.quantidadePessoas === carro.assentos) {
-      return 'O carro já está lotado!';
+carro.adicionarPessoas = function(pessoas) {
+  var totalPessoas = carro.quantidadePessoas + pessoas;
+  var assentosDisponiveis = carro.assentos - carro.quantidadePessoas;
+  var pessoa = (assentosDisponiveis === 1) ? ' pessoa' : ' pessoas';
+  var verbo = (assentosDisponiveis === 1) ? 'cabe' : 'cabem';
+
+  if (carro.quantidadePessoas === carro.assentos && totalPessoas  >= carro.assentos) {
+    return 'O carro já está lotado!';
   }
   
-  if (pessoas > vagasRestantes) {
-      return 'Só cabem mais ' + vagasRestantes + ' ' + pessoa +'!';
+  if (totalPessoas > carro.assentos) {
+    return 'Só ' + verbo +' mais ' + assentosDisponiveis + pessoa +'!';
   }
-  
+
   carro.quantidadePessoas += pessoas;
 
   return 'Já temos ' + carro.quantidadePessoas + ' pessoas no carro!';
-}
+};
 
 /*
 Agora vamos verificar algumas informações do carro. Para as respostas abaixo,
@@ -190,7 +193,7 @@ carro.adicionarPessoas(4); // "Só cabem mais 3 pessoas!"
 carro.adicionarPessoas(3); // "Já temos 5 pessoas no carro!"
 
 // Tire 4 pessoas do carro.
-carro.quantidadePessoas = 1;
+carro.adicionarPessoas(-4);
 
 // Adicione 10 pessoas no carro.
 carro.adicionarPessoas(10); // "Só cabem mais 4 pessoas!"
