@@ -61,35 +61,33 @@ propriedades:
 - Se o parâmetro não for passado, a função deve retornar o objeto com todos
 os livros.
 */
+
 function book(nomeLivro) {
   var livros = {
-    livro01: {
-      quantidadePaginas: 700,
-      autor: 'Michael Jackson',
-      editora: 'Imprimart'
+    'JavaScript Ninja': {
+      quantidadePaginas: 900,
+      autor: 'Fernando Daciuk',
+      editora: 'Código Impresso'
     },
-    livro02: {
-      quantidadePaginas: 566,
-      autor: 'Felipe Pondé',
-      editora: 'Filosofia Impressa'
+    'Programador Quântico': {
+      quantidadePaginas: 665,
+      autor: 'Filipe Deschamps',
+      editora: 'Ideia Impressa'
     },
-    livro03: {
+    'Código Limpo': {
       quantidadePaginas: 1098,
-      autor: 'Marcelo Tas',
-      editora: 'CQC'
+      autor: 'Robert Cecil Martin',
+      editora: 'Amazon Books'
     }
   }
 
-  if (livros[nomeLivro]) {
-    return livros[nomeLivro];
-  }
-
-  return livros;
+  return (!nomeLivro) ? livros : livros[nomeLivro];
 }
 
 /*
 Usando a função criada acima, imprima o objeto com todos os livros.
 */
+
 console.log(book());
 
 /*
@@ -97,18 +95,24 @@ Ainda com a função acima, imprima a quantidade de páginas de um livro qualque
 usando a frase:
 "O livro [NOME_DO_LIVRO] tem [X] páginas!"
 */
-console.log('O livro livro01 tem ' + book('livro01').quantidadePaginas + ' páginas!');
+
+var nomeLivro1 = 'JavaScript Ninja';
+console.log('O livro ' + nomeLivro1 + ' tem ' + book(nomeLivro1).quantidadePaginas + ' páginas!');
 
 /*
 Ainda com a função acima, imprima o nome do autor de um livro qualquer, usando
 a frase:
 "O autor do livro [NOME_DO_LIVRO] é [AUTOR]."
 */
-console.log('O autor do livro livro02 é ' + book('livro02').autor + '.');
+
+var nomeLivro2 = 'Programador Quântico';
+console.log('O autor do livro ' + nomeLivro2 + ' é ' + book(nomeLivro2).autor + '.');
 
 /*
 Ainda com a função acima, imprima o nome da editora de um livro qualquer, usando
 a frase:
 "O livro [NOME_DO_LIVRO] foi publicado pela editora [NOME_DA_EDITORA]."
 */
-console.log('O livro livro03 foi publicado pela editora ' + book('livro03').editora + '.');
+
+var nomeLivro3 = 'Código Limpo';
+console.log('O livro ' + nomeLivro3 + ' foi publicado pela editora ' + book(nomeLivro3).editora + '.');
