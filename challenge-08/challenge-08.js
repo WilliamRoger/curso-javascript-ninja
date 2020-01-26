@@ -6,15 +6,17 @@ desses parâmetros.
 
 var sum = function calculateSum(x, y) {
   return x + y;
-}
+};
 
 /*
 Invoque a função criada acima, passando dois números que serão somados, e mostre
 o resultado no console, com a frase:
 "A soma de [VALOR 1] e [VALOR2] é igual a [RESULTADO]."
 */
+var value1 = 3;
+var value2 = 7;
 
-console.log('A soma de 3 e 7 é igual a ' + sum(3, 7) + '.');
+console.log('A soma de ' + value1 + ' e ' + value2 + ' é igual a ' + sum(value1, value2) + '.');
 
 /*
 Mostre no console o nome da função criada acima, com a frase:
@@ -29,7 +31,7 @@ seu nome.
 */
 
 function showName() {
-  return showName.name;
+  return 'William Roger';
 }
 
 /*
@@ -59,11 +61,11 @@ vai efetuar. Será uma string com os valores `+`, `-`, `*`, `/` ou `%`;
   "Operação inválida."
 */
 
-function calculator(op) {
+function calculator(operator) {
   return function(x, y) {
     var calc = '';
 
-    switch(op) {
+    switch(operator) {
       case '+':
         calc = x + y;
         break;
@@ -82,8 +84,8 @@ function calculator(op) {
       default:
         return 'Operação inválida.';
     }
-    return 'Resultado da operação: ' + x + ' ' + op + ' ' + y +' = ' + calc + '.';
-  }
+    return 'Resultado da operação: ' + x + ' ' + operator + ' ' + y +' = ' + calc + '.';
+  };
 }
 
 /*
@@ -109,6 +111,8 @@ var subtraction = calculator('-');
 var multiplication = calculator('*');
 var division = calculator('/');
 var mod = calculator('%');
+var opInvalida = calculator('x');
+
 /*
 Faça uma operação com cada uma das funções criadas acima, mostrando o resultado
 no console.
@@ -118,3 +122,4 @@ console.log(subtraction(15, 5)); // 10
 console.log(multiplication(5, 5)); // 25
 console.log(division(100, 2)); // 50
 console.log(mod(5, 2)); // 1
+console.log(opInvalida(5, 5));
