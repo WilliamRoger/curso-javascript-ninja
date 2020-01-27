@@ -48,7 +48,7 @@
 
     function sum() {
       return number1 + number2;
-    };
+    }
 
     console.log('A soma de 40 e 50 é igual a', sum());
     console.log('Na função myFunction3, number1 é igual a', number1);
@@ -74,8 +74,8 @@
 
   function calculator(num1, num2) {
     return function (callback) {
-      callback(num1, num2);
-    }
+      return callback(num1, num2);
+    };
   }
 
   /*
@@ -94,15 +94,20 @@
   uma função anônima que irá retornar a soma dos dois números que essa função
   anônima tem como seus argumentos.
   */
-  console.log('O resultado da soma é: ', sum(function() { return num1 + num2 }));
-  // ?
+  console.log('O resultado da soma é:');
+  console.log(sum(function(num1, num2) { 
+    return num1 + num2  
+  }));
 
   /*
   Agora declare outra variáveis chamadas `subtraction`, `multiplication`,
   `division` e `mod`, e atribua à elas `calculator`, passando números
   diferentes para cada chamada.
   */
-  // ?
+  var subtraction = calculator(8, 2); // 6
+  var multiplication = calculator(3, 5); // 15
+  var division = calculator(15, 3); // 5
+  var mod = calculator(5, 2); // 1
 
   /*
   Mostre as variáveis acima no `console` (uma chamada de console por variável),
@@ -112,14 +117,22 @@
   chamada.
   */
   console.log('O resultado da subtração é:');
-  // ?
+  console.log(subtraction(function(num1, num2) {
+    return num1 - num2;
+  }));
 
   console.log('O resultado da multiplicação é:');
-  // ?
+  console.log(multiplication(function(num1, num2) {
+    return num1 * num2;
+  }));
 
   console.log('O resultado da divisão é:');
-  // ?
+  console.log(division(function(num1, num2) {
+    return num1 / num2;
+  }));
 
   console.log('O resto da divisão é:');
-  // ?
+  console.log(mod(function(num1, num2) {
+    return num1 % num2;
+  }));
 })();
