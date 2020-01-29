@@ -54,9 +54,9 @@
   - O desafio é fazer o retorno sem usar "if" ou "switch".
   */
   function isOperatorValid(operator) {
-    return operator === '+' || operator === '-' || operator === '*' || operator === '/' || operator === '%';
+    return !!operation[operator];
   }
-
+  
   /*
   Agora vamos criar a calculadora.
   - Crie uma função chamada `calculator`, que receberá como parâmetro um
@@ -70,15 +70,15 @@
   os dois parâmetros da função de retorno de "calculator".
   */
   function calculator(operator) {
-    if (isOperatorValid(operator)) {
-      return function (num1, num2) {
-        if (typeof num1 !== 'number' || typeof num2 !== 'number') {
-          return false;
-        }
-        return operation[operator](num1, num2);
-      }
+    if (!isOperatorValid(operator)) {
+      return false;
     }
-    return false;
+    return function (num1, num2) {
+      if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+        return false;
+      }
+      return operation[operator](num1, num2);
+    }
   }
 
   /*
@@ -99,7 +99,7 @@
   'Operação "[OPERATOR]" não permitida!'
   */
   function showErrorMessage(operator) {
-    return 'Operação ' + operator + ' não permitida';
+    return 'Operação "' + operator + '" não permitida';
   }
 
   /*
@@ -194,12 +194,12 @@
   a mensagem de erro será mostrada no console.
   */
   operationSignal = '#';
-  var sum2 = calculator(operationSignal)
+  var sumInvalid = calculator(operationSignal)
 
-  if (sum2) {
+  if (sumInvalid) {
     number1 = 10;
     number2 = 10;
-    console.log(showOperationMessage(operationSignal, number1, number2), sum2(number1, number2));
+    console.log(showOperationMessage(operationSignal, number1, number2), sumInvalid(number1, number2));
   } else {
     console.log(showErrorMessage(operationSignal));
   }
