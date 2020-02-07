@@ -8,9 +8,7 @@
   usando o método visto na aula 13.
   */
   console.log('O array em formato de string é:');
-
   var arr = [1, 2, 3, 4, 5, 6];
-
   console.log(arr.toString());
 
   /*
@@ -18,34 +16,28 @@
   Cada array deve conter os estados dessa região.
   */
   var sul = ['Paraná', 'Santa Catarina', 'Rio Grande do Sul'];
-  var sudeste = ['Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo'];
+  var sudeste = ['Espírito Santo', 'Minas Gerais', 'Rio de Janeiro', 'São Paulo'];
 
   /*
   Crie uma variável chamada `brasil`, que irá receber as duas regiões
   concatenadas. Mostre o `brasil` no console.
   */
   console.log('\nAlguns Estados do Brasil:');
-
   var brasil = sul.concat(sudeste);
-
   console.log(brasil.join(', '));
 
   /*
   Adicione 3 novos estados da região Norte no início do array e mostre no console.
   */
   console.log('\nMais estados adicionados:');
-
   brasil.unshift('Amazonas', 'Roraima', 'Pará');
-
   console.log(brasil.join(', '));
 
   /*
   Remova o primeiro estado do array `brasil` e mostre-o no console.
   */
   console.log('\nEstado removido:');
-
   var primeiroEstado = brasil.shift();
-
   console.log(primeiroEstado);
 
   /*
@@ -69,8 +61,16 @@
   /*
   Crie um novo array chamado `nordeste`, que tenha os estados do nordeste.
   */
-  var nordeste = ['Bahia', 'Sergipe', 'Alagoas', 'Pernambuco', 'Paraíba',
-  'Rio Grande do Norte', 'Ceará', 'Piauí', 'Maranhão'];
+  var nordeste = [
+      'Alagoas', 
+      'Bahia', 
+      'Ceará', 
+      'Maranhão', 
+      'Paraíba', 
+      'Pernambuco', 
+      'Piauí', 
+      'Rio Grande do Norte', 
+      'Sergipe'];
 
   /*
   Mostre no console os estados do nordeste.
@@ -82,7 +82,7 @@
   Remova de `brasil` os estados do `sudeste`, colocando-os em uma variável
   chamada `newSudeste`.
   */
-  var newSudeste = brasil.splice(5, 4);
+  var newSudeste = brasil.splice(5);
 
   /*
   Adicione os estados do `nordeste` ao array `brasil`. Esses estados devem
@@ -135,11 +135,7 @@
     return estado.length > 7;
   })
 
-  if (seteLetras) {
-    console.log("Sim, todos os estados tem mais de 7 letras!");
-  } else {
-    console.log("Nem todos os estados tem mais de 7 letras!");
-  }
+  console.log(seteLetras ? 'Sim, todos os estados tem mais de 7 letras!' : 'Nem todos os estados tem mais de 7 letras!');
 
   /*
   Percorra o array `brasil` e verifique se o Ceará está incluído, atribuindo o
@@ -154,11 +150,7 @@
     return estado === 'Ceará';
   });
 
-  if (ceara) {
-    console.log("Ceará está incluído!");
-  } else {
-    console.log("Ceará não foi incluído :(");
-  }
+  console.log(ceara ? 'Ceará está incluído!' : 'Ceará não foi incluído :(');
 
   /*
   Percorra o array `newBrasil` e crie um novo array que some 1 no ID de cada
@@ -167,7 +159,10 @@
   Atribua o novo array a uma variável chamada `map`.
   */
   var map = newBrasil.map(function(estado) {
-    return {id: ++estado.id, estado: `${estado.estado} pertence ao Brasil.`};
+    return {
+      id: ++estado.id, 
+      estado: `${estado.estado} pertence ao Brasil.`
+    };
   });
 
   /*
