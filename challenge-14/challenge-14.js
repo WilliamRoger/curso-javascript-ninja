@@ -11,18 +11,11 @@
   Mostre esse array no console.
   */
   console.log('Number Objects Array:');
-  var numberObjects = [
-    { number: 1 },
-    { number: 2 },
-    { number: 3 },
-    { number: 4 },
-    { number: 5 },
-    { number: 6 },
-    { number: 7 },
-    { number: 8 },
-    { number: 9 },
-    { number: 10 }
-  ];
+  var numberObjects = [];
+  for (var i = 1; i <= 10; i++) {
+    numberObjects.push({ number: i });
+  }
+
   console.log(numberObjects);
 
   /*
@@ -42,9 +35,7 @@
   */
   console.log('\nJust module of division by 2 or 3:');
   var justMod2Or3 = justNumbers.filter(function(item) {
-    if (item % 2 === 0 || item % 3 === 0) {
-      return item;
-    }
+    return item % 2 === 0 || item % 3 === 0;
   });
   console.log(justMod2Or3);
 
@@ -58,8 +49,7 @@
   */
   console.log('\nOperation:');
   var operation = justMod2Or3.reduce(function(acumulado, atual) {
-    ++acumulado;
-    return acumulado * atual;
+    return (acumulado + 1) * atual;
   }, 0);
   console.log(operation);
   /*
@@ -69,8 +59,7 @@
   */
   console.log('\nOperation 2:');
   var operation2 = justMod2Or3.reduceRight(function(acumulado, atual) {
-    ++acumulado;
-    return acumulado * atual;
+    return (acumulado + 1) * atual;
   }, 0);
   console.log(operation2);
 
@@ -84,12 +73,10 @@
   */
   console.log('\nSeu nome na língua do "P":');
   var name = ['Wil', 'li', 'am'];
-  var nameRecude = name.reduce(function(acumulado, atual) {
-    atual += 'P';
-    return acumulado + atual;
-  }, 'P');
-
-  console.log(nameRecude);
+  var nameReduce = name.reduce(function(acumulado, atual) {
+    return acumulado + 'P' + atual;
+  }, '');
+  console.log(nameReduce);
 
   /*
   Crie uma variável chamada `inversedName`, que reduzirá o array em uma string
@@ -100,7 +87,7 @@
   var inversedName = name.reduceRight(function(acumulado, atual) {
     return acumulado + atual;
   });
-  console.log('INVE ', inversedName);
+  console.log(inversedName);
 
   /*
   Mostre no console o array `numberObjects`.
@@ -118,11 +105,21 @@
   o que acontece ;)
   */
   console.log('\nExiste um { number: 2 } em numberObjects?');
-  if (numberObjects.indexOf('{ number: 2 }') > -1) {
+  if (numberObjects.indexOf({ number: 2 }) > -1) {
     console.log('Existe um objeto { number: 2 } em numberObjects!');
   } else {
     console.log('Não existe um objeto { number: 2 } em numberObjects :(');
   }
+  /*
+  O Javascript não consegue encontrar o objeto mesmo sendo exatamente igual porque
+  nesse momento foi criado um novo objeto com uma nova refêrencia de memória diferente
+  da referência de memória do objeto presente no array que está sendo buscado
+  para que essa busca funcione é preciso atribuir o valor que queremos buscar a uma variável
+  que vai receber a mesma referência e só aí então iremos encontrar o index que corresponde ao objeto desejado dentro do array.
+  EXEMPLO: 
+  var obj = numberObjects[1];
+  numberObjects.indexOf({ number: 2 }) > -1
+  */
 
   /*
   Fazendo o mesmo do exercício acima, mas começando a buscar do último índice,
@@ -141,7 +138,7 @@
   */
   console.log('\njustMod2Or3 é um array? Se for, a representação dele em String é:');
   if (Array.isArray(justMod2Or3)) {
-    console.log(justMod2Or3.join());
+    console.log(justMod2Or3.toString());
   }
 
 })();
