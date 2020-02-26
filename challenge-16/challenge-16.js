@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-
   /*
   1. Envolva todo o conteúdo desse desafio em uma IIFE.
   2. Adicione a diretiva 'use strict';
@@ -18,8 +17,8 @@
   */
   console.log('As letras do seu nome:');
   var name = 'William';
-  for(var i = 0; i < name.length; i++) {
-    console.log(`${name.charAt(i)} é a ${i+1}ª letra do meu nome`);
+  for (var i = 0, len = name.length; i < len; i++) {
+    console.log(name.charAt(i) + ' é a '+ (i+1) +'ª letra do meu nome');
   }
 
   /*
@@ -36,18 +35,13 @@
   */
   console.log('\nNome convertido à partir de um slug:');
   var fullName = 'william-roger-de-camargo';
-
-  function formatName(name) {
-    var names = name.split('-');
-    names = names.map(function(item) {
-      return item.charAt(0).toUpperCase() + item.slice(1);
-    });
-
-    return names.join(' ');
-  }
-
   console.log('fullname ', fullName);
-  console.log('new fullname ', formatName(fullName));
+
+  var fullNameFormated = fullName.split('-').map(function (name) {
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  }).join(' ');
+
+  console.log('fullNameFormated ', fullNameFormated);
 
   /*
   - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
@@ -61,14 +55,13 @@
   console.log('\nMeus amigos:');
   var amigos = ['Júnior', 'George', 'Luiz', 'Cal', 'Jocemir'];
 
-  function myFriends(friends) {
-    return friends.reduce(function (acomulado, atual, index, array) {
-      var sinal = (index < array.length - 1) ? ', ' : ' e ';
-      return acomulado + sinal + atual;
-    }) + ' são meus amigos.';
-  }
+  var meusAmigos = amigos.reduce(function (acomulado, atual, index, array) {
+    var separador = (index < array.length - 1) ? ', ' : ' e ';
 
-  console.log(myFriends(amigos));
+    return acomulado + separador + atual;
+  }).concat(' são meus amigos.');
+
+  console.log(meusAmigos);
 
   /*
   Usando o replace(), faça a string "Roberto" virar "Roberta".
@@ -82,7 +75,8 @@
   faz a busca do final para o início da string.
   */
   console.log('\nParte de uma string:');
-  console.log("Fernando".slice("Fernando".lastIndexOf('nando')));
+  // console.log("Fernando".slice("Fernando".lastIndexOf('nando')));
+  console.log("Fernando".substring(8, 3));
 
   /*
   Declare uma variável chamada `myName`, que receba o seu primeiro nome,
@@ -95,14 +89,10 @@
   */
   console.log('\nNome com letras intercaladas entre caixa alta e baixa:');
   var myName = 'William';
-
-  function newName(name) {
-    var newName = '';
-    for (var i = 0; i < name.length; i++) {
-      newName += (i % 2 === 0) ? name.charAt(i).toUpperCase() : name.charAt(i).toLowerCase();
-    }
-    return newName;
+  var newMyName = '';
+  for (var i = 0, len = name.length; i < len; i++) {
+    newMyName += (i % 2 === 0) ? name.charAt(i).toUpperCase() : name.charAt(i).toLowerCase();
   }
 
-  console.log(newName(myName));
+  console.log(newMyName);
 })();
