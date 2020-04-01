@@ -1,97 +1,137 @@
-(function() {
+(function(window, document) {
   'use strict';
+
   /*
   1. Envolva todo o conteúdo desse desafio em uma IIFE.
   2. Adicione a diretiva 'use strict';
-  3. Crie um arquivo index.html e adicione esse script à ele.
+  3. Passe por parâmetro para a IIFE os objetos window e document.
+  4. Dessa vez não é necessário criar um HTML. Ele já existe, e vamos utilizar
+  a marcação criada nele para fazer nosso desafio ;)
+
+  O HTML NÃO PODE ser alterado!
   */
 
   /*
-  Alguns detalhes importantes que faltou falar na aula:
-  1. O objeto RegExp() pode receber um segundo parâmetro, que são as flags:
-  - var justNumbersAndLetters = new RegExp( '[\\da-z]', 'gi' );
-  2. Como a expressão regular passada para o objeto RegExp() é uma string,
-  ela pode ser concatenada para gerar uma regex em tempo de execução,
-  diferente da regex literal, onde toda a regex precisa estar pronta antes
-  da utilização.
+  Ao carregar a página, pergunte ao usuário "Qual o seu nome?". Atribua o
+  resultado à uma variável chamada `username`. Se o usuário não digitar um
+  nome, `username` deve receber "Desconhecido".
+  Com a resposta, mostre um alert com a mensagem "Bem vindo [USERNAME]!"
   */
+  var username = prompt('Qual o seu nome?') || 'Desconhecido';
+
+  alert('Bem-vindo ' + username);
 
   /*
-  - Usando o construtor de Regex, crie uma regex que case somente com números
-  no início da string. O match precisa ser feito para todas as
-  correspondências de qualquer string, não somente para a primeira, ainda que
-  esta tenha muitas linhas, deve sempre casar com números no início de cada
-  linha, independente de quantos caracteres de número estiverem juntos.
-  - Atribua essa regex à uma variável chamada `justNumbersRegex` e mostre-a
-  no console:
+  Agora, pergunte ao usuário "Qual o seu e-mail?", atribuindo o resultado à
+  uma variável chamada `email`.
   */
-  console.log('Regex para números usando o construtor:');
-  var justNumbersRegex = new RegExp('^\\d+', 'gm');
-  console.log(justNumbersRegex);
-  /*
-  Verifique se a regex acima casa com o texto na variável `text`, mostrando o
-  resultado no console. O resultado deve ser:
-  "[ '10', '50' ]"
-  */
-  var text = '10 anos.\n50 discos vendidos.\nE nem 10% dos meus amigos o conhece.';
-  console.log('\nNúmeros no início da linha do texto:\n' + text, '\n');
-  console.log(text.match(justNumbersRegex));
+  var email = prompt('Qual o seu e-mail?');
 
   /*
-  - Crie uma regex que case com números no final de uma string. Atribua a
-  regex à uma variável chamada `numbersAtTheEnd`.
-  - A regex deve casar com todas as correspondências de qualquer string, ainda
-  que esta tenha muitas linhas, deve sempre casar com números no fim de cada
-  linha, independente de quantos caracteres de número estiverem juntos.
-  Mostre a regex no console:
+  - Selecione o input de "Nome", atribuindo-o à uma variável chamada
+  `$inputUsername`.
   */
-  console.log('\nRegex para números somente no final das linhas:');
-  var numbersAtTheEnd = /\d+$/gm;
-  console.log(numbersAtTheEnd);
-  /*
-  Verifique se a regex acima casa com o texto na variável `otherText`,
-  mostrando o resultado no console.
-  O resultado deve ser:
-  "[ '12', '6' ]"
-  */
-  var otherText = 'Silvio Santos, nome artístico de Senor Abravanel (Rio de Janeiro, 12\n de dezembro de 1930), é um apresentador de televisão e empresário brasileiro.\n Proprietário do Grupo Silvio Santos, que inclui empresas como a Liderança\n Capitalização (administradora da loteria Tele Sena), a Jequiti Cosméticos e o\n Sistema Brasileiro de Televisão (mais conhecido como SBT), Silvio Santos possui\n um patrimônio avaliado em aproximadamente 6\n bilhões de reais.';
-  console.log('\nNúmeros no final da linha:\n\n', otherText, '\n');
-  console.log(otherText.match(numbersAtTheEnd));
+  var $inputUsername = document.querySelector('input[type="text"]');
 
   /*
-  Vamos criar um método que vai testar se uma classe CSS existe em uma
-  marcação HTML.
-  - Primeiro, crie uma função chamada `hasClass`;
-  - Essa função receberá dois parâmetros: o primeiro chamado `markup`, que
-  será a marcação HTML testada, e o segundo `cssClass`, que será a classe que
-  iremos testar;
-  - A função deve retornar `true` se a classe existir na marcação e `false`
-  caso contrário;
-  - A marcação usada para testar deve ser a que está na variável `markup`
-  abaixo;
-  - Não altere a marcação na variável markup!
-  - Faça o teste, mostrando no console o resultado para as seguintes classes:
-  - "container", "text", "date", "excerpt" e "main".
-  - O console deve exibir a frase:
-  "[RESULTADO] para a classe [CLASSE]"
-  - Ex. de resposta:
-  "true para a classe container"
-  - Teste uma classe por vez (um console.log por classe).
-  - Lembrando que a função deve funcionar para qualquer marcação HTML e para
-  qualquer classe que for testada. Os dados passados no exercício são somente
-  para exemplificar.
+  - Selecione o input de "Email", atribuindo-o à uma variável chamada
+  `$inputEmail`.
   */
-  var markup = '<main>\n  <div class="container">\n    <span class="text date"></span>\n    <p class=\'excerpt\'></p>\n  </div>\n</main>';
-  console.log('\nQuais classes CSS existem na marcação abaixo?\n\n', markup, '\n');
+  var $inputEmail = document.querySelector('input[type="email"]');
 
-  function hasClass(markup, cssClass) {
-   var regex = new RegExp('class=["\'](?:[\\w\\s]+)?' + cssClass + '(?:[\\w\\s]+)?["\']');
-   return regex.test(markup);
+  /*
+  - Selecione o campo de "Mensagem", atribuindo-o à uma variável chamada
+  `$message`.
+  */
+  var $message = document.querySelector('textarea');
+
+  /*
+  - Selecione o botão de envio do formulário, atribuindo-o à uma variável
+  chamada `$button`.
+  */
+  var $button = document.querySelector('[type="submit"]');
+
+  /*
+  Preencha os campos de "Nome" e "Email" que estão no documento com os valores
+  entrados pelo usuário.
+  */
+  $inputUsername.value = username;
+  $inputEmail.value = email;
+
+  /*
+  Adicione um listener de evento de click ao botão que faça o seguinte:
+  1. Verificar se todos os campos estão preenchidos:
+  - Mostrar um alert para cada campo não preenchido, como abaixo:
+  - Se o campo de "Nome" não estiver preenchido, mostrar:
+      - "Preencha o nome do usuário!"
+  - Se o campo de "Email" não estiver preenchido, mostrar:
+      - "Preencha o e-mail!"
+  - Se o campo de "Mensagem" não estiver preenchido, mostrar:
+      - "Preencha a mensagem!"
+  - Se o campo de "Email" for inválido, mostrar:
+      - "Entre com um e-mail válido!"
+
+  2. Para verificar se o e-mail é válido use a função `isValidEmail`, passando
+  o e-mail que foi entrado no campo de "Email" por parâmetro. (A função
+  `isValidEmail` será criada logo abaixo).
+
+  3. Se tudo estiver OK, pergunte ao usuário:
+      - "Tem certeza que deseja enviar o formulário?"
+  Se for confirmado, mostre um alerta com a mensagem:
+      - "Enviado com sucesso!"
+  Caso contrário, mostre um alerta com a mensagem:
+      - "Não enviado."
+  */
+  $button.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    if (!$inputUsername.value) 
+      return alert('Preencha o nome do usuário!');
+    
+    if (!$inputEmail.value)
+      return alert('Preencha o e-mail!');
+
+    if (!$message.value)
+      return alert('Preencha a mensagem!');
+    
+    if (!isValidEmail($inputEmail.value))
+      return alert('Entre com um e-mail válido!');
+
+    if (!confirm('Tem certeza que deseja enviar o formulário?'))
+      return alert('Não enviado.');
+
+    return alert('Enviado com sucesso!');
+
+  }, false);
+
+  /*
+  Crie uma função chamada `isValidEmail`, que será usada na validação do
+  envio do formulário.
+  Essa função deve receber o e-mail por parâmetro e verificar se é um e-mail
+  válido.
+  As regras para validação são:
+      - O nome do usuário (antes do arroba), pode ser qualquer caractere
+      alfanumérico, incluindo o underscore, sinal de "+" e o ponto;
+      - Após o arroba, o domínio pode conter somente caracteres alfanuméricos
+      e o underscore;
+      - Para a extensão, o domínio deve vir seguido de um ponto, e no mínimo
+      2 caracteres alfanuméricos;
+      - O final do domínio é opcional, mas se existir, deve começar com um
+      ponto, seguido de no máximo 2 caracteres alfanuméricos.
+
+  Alguns e-mails válidos que podem ser usados para testar:
+      - "meu.email+categoria@gmail.com"
+      - "juca_malandro@bol.com.br"
+      - "pedrobala@hotmail.uy"
+      - "sandro@culinaria.dahora"
+
+  Alguns e-mails inválidos:
+      - "walter-da-silva@maraca.br"
+      - "rita-marica@titica.a.b"
+      - "agua_@evida.br.com"
+  */
+  function isValidEmail(email) {
+    return /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email);
   }
-
-  var classes = ['container', 'text', 'date', 'excerpt', 'main'];
-
-  classes.forEach(function(cssClass) {
-    console.log(hasClass(markup, cssClass) + ' para a classe ' + cssClass);
-  });
-})();
+  
+})(window, document);
