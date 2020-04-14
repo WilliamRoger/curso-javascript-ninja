@@ -1,4 +1,6 @@
 (function(window, document) {
+  'use strict';
+
   /*
   O desafio de hoje será um pequeno projeto: um cronômetro!
   As regras para criação do cronômetro são as seguintes:
@@ -15,28 +17,28 @@
   usar o nome que achar melhor, desde que ele seja semântico, ou seja, o nome
   dado ao elemento HTML deve definir o que o elemento é ou o que ele faz.
   */
-  var display = document.querySelector('[data-js="display"]');
-  var btnStart = document.querySelector('[data-js="btn-start"]');
-  var btnStop = document.querySelector('[data-js="btn-stop"]');
-  var btnReset = document.querySelector('[data-js="btn-reset"]');
+  var $display = document.querySelector('[data-js="display"]');
+  var $btnStart = document.querySelector('[data-js="btn-start"]');
+  var $btnStop = document.querySelector('[data-js="btn-stop"]');
+  var $btnReset = document.querySelector('[data-js="btn-reset"]');
+  var idTimer;
 
-  var counter = display.value;
-  var idTime = '';
-  function timer() {
-    display.value = counter++;
-    idTime = setTimeout(timer, 1000);
-  }
+  $btnStart.addEventListener('click', startTimer, false);
+  $btnStop.addEventListener('click', stopTimer, false);
+  $btnReset.addEventListener('click', resetTimer, false);
   
-  btnStart.addEventListener('click', timer);
+  function startTimer() {
+    $display.value = Number($display.value) + 1;
+    idTimer = setTimeout(startTimer, 1000);
+  }
 
-  btnStop.addEventListener('click', function () {
-    clearTimeout(idTime);
-  });
+  function stopTimer() {
+    clearTimeout(idTimer);
+  }
 
-  btnReset.addEventListener('click', function() {
-    display.value = 0;
-    counter = 0;
-    clearTimeout(idTime);
-  });
+  function resetTimer() {
+    $display.value = 0;
+    stopTimer();
+  }
 
 })(window, document);
